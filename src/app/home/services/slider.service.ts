@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Slider } from '../Models/Slider';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class SliderService {
   public getSliders(): Observable<Slider[]> {
     if (this.sliderValue.length == 0)
       this.httclient
-        .get<Slider[]>('https://localhost:7228/api/Slider')
+        .get<Slider[]>(environment.BASE_URL + '/api/Slider')
         .subscribe({ next: (d) => this.slider$.next(d) });
     return this.slider$.asObservable();
   }

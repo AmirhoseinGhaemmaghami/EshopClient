@@ -136,52 +136,8 @@
           <!--  ==========  -->
           <div class="nav-collapse collapse">
             <ul class="nav" id="mainNavigation">
-              <li class="dropdown active">
-                <a href="index.html" class="dropdown-toggle">
-                  خانه <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown active">
-                    <a href="index.html"
-                      ><i
-                        class="icon-caret-left pull-right visible-desktop"
-                      ></i>
-                      رنگ های پوسته</a
-                    >
-                    <ul class="dropdown-menu">
-                      <li class="active">
-                        <a href="index.html">پوسته پیش فرض</a>
-                      </li>
-                      <li>
-                        <a href="index-grass-green.html">پوسته سبز چمنی</a>
-                      </li>
-                      <li>
-                        <a href="index-oil-green.html">پوسته سبز روغنی</a>
-                      </li>
-                      <li><a href="index-gray.html">پوسته خاکستری</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="index-boxed-solid.html"
-                      ><i
-                        class="icon-caret-left pull-right visible-desktop"
-                      ></i>
-                      ورژن boxed</a
-                    >
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="index-boxed-solid.html"
-                          >Boxed - با رنگ پس زمینه ثابت</a
-                        >
-                      </li>
-                      <li>
-                        <a href="index-boxed-pattern.html"
-                          >Boxed - با پس زمینه الگو</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+              <li routerLinkActive="ractive" class="dropdown">
+                <a [routerLink]="['/']" class="dropdown-toggle"> خانه </a>
               </li>
 
               <li class="dropdown">
@@ -242,8 +198,12 @@
                   </li>
                 </ul>
               </li>
-              <li><a href="about-us.html">درباره ما</a></li>
-              <li><a href="contact.html">تماس با ما</a></li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/about-us']">درباره ما</a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/contact-us']">تماس با ما</a>
+              </li>
             </ul>
 
             <!--  ==========  -->

@@ -19,6 +19,11 @@ const routes: Routes = [
         (mod) => mod.ContactUsModule
       ),
   },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((mod) => mod.AccountModule),
+  },
 ];
 
 @NgModule({

@@ -18,7 +18,7 @@ export class SliderService {
   public getSliders(): Observable<Slider[]> {
     if (this.sliderValue.length == 0)
       this.httclient
-        .get<Slider[]>(environment.BASE_URL + '/api/Slider')
+        .get<Slider[]>('/api/Slider')
         .subscribe({ next: (d) => this.slider$.next(d) });
     return this.slider$.asObservable();
   }

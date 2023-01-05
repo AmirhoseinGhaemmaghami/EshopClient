@@ -1,0 +1,266 @@
+<!--  ==========  -->
+<!--  = Breadcrumbs =  -->
+<!--  ==========  -->
+<div class="darker-stripe">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <ul class="breadcrumb">
+          <li>
+            <a [routerLink]="['']">وبمارکت</a>
+          </li>
+          <li><span class="icon-chevron-right"></span></li>
+          <li>
+            <a href="contact.html">ثبت نام</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="push-up top-equal blocks-spacer-last">
+    <div class="row">
+      <!--  ==========  -->
+      <!--  = Main Title =  -->
+      <!--  ==========  -->
+
+      <div class="span12">
+        <div class="title-area">
+          <h1 class="inline">
+            <span class="light">ثبت نام</span>
+          </h1>
+        </div>
+      </div>
+
+      <!--  ==========  -->
+      <!--  = Main content =  -->
+      <!--  ==========  -->
+      <section class="span8 single single-page">
+        <!--  ==========  -->
+        <!--  = Contact Form =  -->
+        <!--  ==========  -->
+        <section class="contact-form-container">
+          <form
+            [formGroup]="registerForm"
+            (ngSubmit)="registerSubmit()"
+            class="form form-inline form-contact"
+          >
+            <p class="push-down-20">
+              <label for="email"
+                >ایمیل<span class="red-clr bold">*</span></label
+              >
+              <input
+                formControlName="email"
+                id="email"
+                name="email"
+                aria-required="true"
+                tabindex="1"
+                size="30"
+              />
+              <ng-container
+                *ngIf="this.registerForm.controls['email'] as emailControl"
+              >
+                <p
+                  class="text-error"
+                  *ngIf="emailControl.touched && emailControl.errors?.['required']"
+                >
+                  Email is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="emailControl.touched && emailControl.errors?.['maxlength']"
+                >
+                  Email length Must be Less than 100
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="emailControl.touched && emailControl.errors?.['email']"
+                >
+                  Invalid Email
+                </p>
+              </ng-container>
+            </p>
+
+            <p class="push-down-20">
+              <label for="password"
+                >پسورد<span class="red-clr bold">*</span></label
+              >
+              <input
+                formControlName="password"
+                type="password"
+                id="password"
+                name="password"
+                aria-required="true"
+                tabindex="2"
+                size="30"
+              />
+              <ng-container
+                *ngIf="
+                  this.registerForm.controls['password'] as passwordControl
+                "
+              >
+                <p
+                  class="text-error"
+                  *ngIf="passwordControl.touched && passwordControl.errors?.['required']"
+                >
+                  Password is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="passwordControl.touched && passwordControl.errors?.['maxlength']"
+                >
+                  Password length Must be Less than 100
+                </p>
+              </ng-container>
+            </p>
+
+            <p class="push-down-20">
+              <label for="confirmPassword"
+                >تکرار پسورد<span class="red-clr bold">*</span></label
+              >
+              <input
+                formControlName="confirmPassword"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                aria-required="true"
+                tabindex="3"
+                size="30"
+              />
+              <ng-container
+                *ngIf="
+                  this.registerForm.controls[
+                    'confirmPassword'
+                  ] as confirmPasswordControl
+                "
+              >
+                <p
+                  class="text-error"
+                  *ngIf="confirmPasswordControl.touched && confirmPasswordControl.errors?.['required']"
+                >
+                  Password is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="confirmPasswordControl.touched && confirmPasswordControl.errors?.['maxlength']"
+                >
+                  Password length Must be Less than 100
+                </p>
+              </ng-container>
+            </p>
+            <p class="push-down-20">
+              <label for="firstName"
+                >نام<span class="red-clr bold">*</span></label
+              >
+              <input
+                formControlName="firstName"
+                id="firstName"
+                name="firstName"
+                aria-required="true"
+                tabindex="4"
+                size="30"
+              />
+              <ng-container
+                *ngIf="
+                  this.registerForm.controls['firstName'] as firstNameControl
+                "
+              >
+                <p
+                  class="text-error"
+                  *ngIf="firstNameControl.touched && firstNameControl.errors?.['required']"
+                >
+                  First Name is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="firstNameControl.touched && firstNameControl.errors?.['maxlength']"
+                >
+                  First Name length Must be Less than 100
+                </p>
+              </ng-container>
+            </p>
+            <p class="push-down-20">
+              <label for="lastName"
+                >نام خانوادگی<span class="red-clr bold">*</span></label
+              >
+              <input
+                formControlName="lastName"
+                id="lastName"
+                name="lastName"
+                aria-required="true"
+                tabindex="5"
+                size="30"
+              />
+              <ng-container
+                *ngIf="
+                  this.registerForm.controls['lastName'] as lastNameControl
+                "
+              >
+                <p
+                  class="text-error"
+                  *ngIf="lastNameControl.touched && lastNameControl.errors?.['required']"
+                >
+                  Last Name is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="lastNameControl.touched && lastNameControl.errors?.['maxlength']"
+                >
+                  Last Name length Must be Less than 100
+                </p>
+              </ng-container>
+            </p>
+
+            <p class="push-down-20">
+              <label for="address"
+                >آدرس<span class="red-clr bold">*</span></label
+              >
+              <textarea
+                class="input-block-level"
+                tabindex="6"
+                rows="2"
+                cols="30"
+                id="address"
+                name="address"
+                placeholder="آدرس"
+                formControlName="address"
+              ></textarea>
+              <ng-container
+                *ngIf="this.registerForm.controls['address'] as addressControl"
+              >
+                <p
+                  class="text-error"
+                  *ngIf="addressControl.touched && addressControl.errors?.['required']"
+                >
+                  Address is required
+                </p>
+                <p
+                  class="text-error"
+                  *ngIf="addressControl.touched && addressControl.errors?.['maxlength']"
+                >
+                  Address length Must be Less than 500
+                </p>
+              </ng-container>
+            </p>
+            <p>
+              <button
+                [disabled]="this.registerForm.invalid"
+                class="btn"
+                [class.btn-primary]="this.registerForm.valid"
+                type="submit"
+                tabindex="7"
+                id="submit"
+              >
+                ثبت نام
+              </button>
+            </p>
+          </form>
+        </section>
+      </section>
+      <!-- /main content -->
+    </div>
+  </div>
+</div>
+<!-- /container -->

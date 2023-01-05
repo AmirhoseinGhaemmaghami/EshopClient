@@ -9,9 +9,13 @@ import { LoginResultDto } from 'src/app/shared/Models/Account/LoginResultDto';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  currentUser$: Observable<LoginResultDto| null>;
+  currentUser$: Observable<LoginResultDto | null>;
 
-  constructor(private accountService: AccountService){
-    this.currentUser$ = accountService.currentUser$;
+  constructor(private accountService: AccountService) {
+    this.currentUser$ = accountService.User$;
+  }
+
+  signOutClick() {
+    this.accountService.signOut();
   }
 }

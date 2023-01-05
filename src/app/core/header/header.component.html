@@ -55,7 +55,7 @@
             <a [routerLink]="['/account', 'register']">ثبت نام</a>
           </div>
           <div *ngIf="this.currentUser$ | async as currentUser">
-            <a>خروح</a>
+            <a (click)="signOutClick()">خروح</a>
           </div>
         </div>
       </div>

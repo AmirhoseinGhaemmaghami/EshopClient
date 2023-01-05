@@ -246,7 +246,6 @@
             </p>
             <p>
               <button
-                [disabled]="this.registerForm.invalid"
                 class="btn"
                 [class.btn-primary]="this.registerForm.valid"
                 type="submit"
@@ -264,3 +263,5 @@
   </div>
 </div>
 <!-- /container -->
+
+<swal #mySwal text="" title="" [toast]="true" icon="info"></swal>

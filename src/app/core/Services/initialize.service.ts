@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from 'src/app/account/account.service';
+import { Consts } from '../consts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InitializeService {
-  constructor(
-    private CookieService: CookieService,
-    private accountServie: AccountService
-  ) {}
+  constructor(private accountServie: AccountService) {}
 
   loadUser(): void {
-    let token = this.CookieService.get('eshop-cookie');
+    let token = localStorage.getItem(Consts.token);
     if (token)
       this.accountServie.getCurrentUser(token).subscribe({
         next: (v) => {},

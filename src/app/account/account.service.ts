@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { Consts } from '../core/consts';
 import { LoginInputDto } from '../shared/Models/Account/LoginInputDto';
 import { LoginResultDto } from '../shared/Models/Account/LoginResultDto';
 import { RegisterInputDto } from '../shared/Models/Account/RegisterInputDto';
@@ -14,10 +14,7 @@ export class AccountService {
   private currentUserSubject: BehaviorSubject<LoginResultDto | null> =
     new BehaviorSubject<LoginResultDto | null>(null);
 
-  constructor(
-    private httpclient: HttpClient,
-    private cookieService: CookieService
-  ) {}
+  constructor(private httpclient: HttpClient) {}
 
   public get User$(): Observable<LoginResultDto | null> {
     return this.currentUserSubject.asObservable();
@@ -40,11 +37,7 @@ export class AccountService {
       .pipe(
         map((v: LoginResultDto) => {
           this.currentUserSubject.next(v);
-          if (v.token)
-            this.cookieService.set('eshop-cookie', v.token, {
-              expires: new Date(v.tokenExpireDate),
-              secure: true,
-            });
+          if (v.token) localStorage.setItem(Consts.token, v.token);
           return v;
         })
       );
@@ -58,10 +51,7 @@ export class AccountService {
       map((v) => {
         this.currentUserSubject.next(v);
         if (v.token) {
-          this.cookieService.set('eshop-cookie', v.token, {
-            expires: new Date(v.tokenExpireDate),
-            secure: true,
-          });
+          localStorage.setItem(Consts.token, v.token);
         }
         return v;
       })
@@ -69,7 +59,7 @@ export class AccountService {
   }
 
   signOut(): void {
-    this.cookieService.delete('eshop-cookie');
     this.currentUserSubject.next(null);
+    localStorage.removeItem(Consts.token);
   }
 }

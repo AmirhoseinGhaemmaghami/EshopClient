@@ -8,18 +8,17 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/account/account.service';
-import { CookieService } from 'ngx-cookie-service';
+import { Consts } from '../consts';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private cookieService: CookieService) {}
+  constructor() {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    let jwtToken = this.cookieService.get('eshop-cookie');
-
+    let jwtToken = localStorage.getItem(Consts.token);
     if (jwtToken) {
       let reqClone = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + jwtToken),

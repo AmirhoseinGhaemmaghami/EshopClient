@@ -1,0 +1,5 @@
+<h3 *ngIf="this.activatationResult === undefined">Email Confirming</h3>
+<h3 *ngIf="this.activatationResult === true">Email Confirmed Successfully</h3>
+<h3 *ngIf="this.activatationResult === false">Email Not Confirmed</h3>
+
+<swal #mySwal text="" title="" [toast]="true" icon="info"></swal>

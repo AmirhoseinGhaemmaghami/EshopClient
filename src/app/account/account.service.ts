@@ -62,4 +62,10 @@ export class AccountService {
     this.currentUserSubject.next(null);
     localStorage.removeItem(Consts.token);
   }
+
+  confirmEmail(userId: number, code: string): Observable<boolean> {
+    return this.httpclient.post<boolean>('/api/account/confirmEmail', null, {
+      params: { code, userId },
+    });
+  }
 }

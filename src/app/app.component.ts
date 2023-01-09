@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { InitializeService } from './core/Services/initialize.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { InitializeService } from './core/Services/initialize.service';
 export class AppComponent implements OnInit {
   title = 'eshop-pro';
 
-  constructor(private initializeService: InitializeService) {}
+  constructor(
+    private initializeService: InitializeService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.initializeService.loadUser();

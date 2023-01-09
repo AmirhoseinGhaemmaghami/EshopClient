@@ -88,20 +88,14 @@
           <!--  ==========  -->
           <div class="nav-collapse collapse">
             <ul class="nav" id="mainNavigation">
-              <li routerLinkActive="ractive" class="dropdown">
+              <li routerLinkActive="active" class="dropdown">
                 <a [routerLink]="['/']" class="dropdown-toggle"> خانه </a>
               </li>
 
-              <li class="dropdown">
-                <a href="shop.html" class="dropdown-toggle">
-                  فروشگاه <b class="caret"></b>
+              <li routerLinkActive="active" class="dropdown">
+                <a [routerLink]="['/products']" class="dropdown-toggle">
+                  محصولات
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a href="shop.html">قالب بندی پیش فرض</a></li>
-                  <li><a href="shop-no-sidebar.html">تمام صفحه</a></li>
-                  <li><a href="product.html">محصول تکی</a></li>
-                  <li><a href="shop-search.html">نتایج جستجو</a></li>
-                </ul>
               </li>
               <li class="dropdown">
                 <a href="blog.html" class="dropdown-toggle"

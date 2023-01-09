@@ -10,6 +10,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,11 +26,13 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
       positionClass: 'toast-center-center',
       preventDuplicates: true,
     }), // ToastrModule added
+    NgxSpinnerModule.forRoot({ type: 'fire' }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: EshopInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Product } from 'src/app/shared/Models/Products/product';
 import { ProductInputWithSpec } from 'src/app/shared/Models/Products/productInputWithSpec';
 import { ProductService } from '../product.service';
@@ -10,18 +11,27 @@ import { ProductService } from '../product.service';
 })
 export class ProductsComponent implements OnInit {
   productsToShow: Product[] = [];
+  total: number = 0;
+  inp = new ProductInputWithSpec(1, 5);
+
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    let inp = new ProductInputWithSpec(1, 10);
-    this.getProducts(inp);
+    this.getProducts(this.inp);
   }
 
   getProducts(inp: ProductInputWithSpec) {
     this.productService.getProducts(inp).subscribe({
       next: (d) => {
         this.productsToShow = d.data;
+        this.total = d.count;
       },
     });
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.inp.PageId = event.pageIndex + 1;
+    this.inp.PageSize = event.pageSize;
+    this.getProducts(this.inp);
   }
 }

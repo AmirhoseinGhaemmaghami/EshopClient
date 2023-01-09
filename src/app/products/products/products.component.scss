@@ -1,0 +1,15 @@
+mat-paginator {
+  direction: ltr;
+
+  .mat-mdc-paginator-page-size-label {
+    display: none !important;
+  }
+
+  #mat-paginator-page-size-label-0 {
+    display: none;
+  }
+
+  div#mat-paginator-page-size-label-0 {
+    display: none;
+  }
+}

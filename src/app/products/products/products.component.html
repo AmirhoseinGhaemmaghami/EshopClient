@@ -399,6 +399,19 @@
           </div>
         </div>
         <hr />
+        <mat-paginator
+          #paginator
+          class="demo-paginator"
+          (page)="handlePageEvent($event)"
+          [length]="total"
+          [pageSize]="inp.PageSize"
+          [disabled]="false"
+          [showFirstLastButtons]="true"
+          [hidePageSize]="true"
+          [pageIndex]="inp.PageId - 1"
+          aria-label="Select page"
+        >
+        </mat-paginator>
       </section>
       <!-- /main content -->
     </div>

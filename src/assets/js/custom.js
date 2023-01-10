@@ -228,43 +228,6 @@ jQuery(document).ready(function ($) {
         },
       });
 
-      // jQuery UI slider
-      var prepareCurrency = function (value) {
-        return WebMarketVars.currencyBefore
-          ? WebMarketVars.currencySymbol + value
-          : value + WebMarketVars.currencySymbol;
-      };
-      var $slider = $(".jqueryui-slider-container > div");
-      $slider.slider({
-        range: true,
-        min: WebMarketVars.priceRange[0],
-        max: WebMarketVars.priceRange[1],
-        values: WebMarketVars.priceRange,
-        step: WebMarketVars.priceStep,
-        slide: function (ev, ui) {
-          $(this)
-            .parent()
-            .siblings(".min-val")
-            .val(prepareCurrency(ui.values[0]));
-          $(this)
-            .parent()
-            .siblings(".max-val")
-            .val(prepareCurrency(ui.values[1]));
-        },
-        change: function () {
-          updateIsotopeFiltering();
-        },
-        create: function () {
-          var $sliderParent = $(this).parents(".accordion-body");
-          $sliderParent
-            .find(".min-val")
-            .val(prepareCurrency($(this).slider("values", 0)));
-          $sliderParent
-            .find(".max-val")
-            .val(prepareCurrency($(this).slider("values", 1)));
-        },
-      });
-      //  ==========
       //  = Filters for sidebar =
       //  ==========
       var $selectableElms = $(".sidebar-filters .selectable");
@@ -680,4 +643,38 @@ function homeSlider() {
       return false;
     });
   }
+}
+
+function jquerySlider() {
+  // jQuery UI slider
+  var prepareCurrency = function (value) {
+    return WebMarketVars.currencyBefore
+      ? WebMarketVars.currencySymbol + value
+      : value + WebMarketVars.currencySymbol;
+  };
+  var $slider = $(".jqueryui-slider-container > div");
+  $slider.slider({
+    range: true,
+    min: WebMarketVars.priceRange[0],
+    max: WebMarketVars.priceRange[1],
+    values: WebMarketVars.priceRange,
+    step: WebMarketVars.priceStep,
+    slide: function (ev, ui) {
+      $(this).parent().siblings(".min-val").val(prepareCurrency(ui.values[0]));
+      $(this).parent().siblings(".max-val").val(prepareCurrency(ui.values[1]));
+    },
+    change: function () {
+      updateIsotopeFiltering();
+    },
+    create: function () {
+      var $sliderParent = $(this).parents(".accordion-body");
+      $sliderParent
+        .find(".min-val")
+        .val(prepareCurrency($(this).slider("values", 0)));
+      $sliderParent
+        .find(".max-val")
+        .val(prepareCurrency($(this).slider("values", 1)));
+    },
+  });
+  //  ==========
 }

@@ -4,6 +4,8 @@ import { Product } from 'src/app/shared/Models/Products/product';
 import { ProductInputWithSpec } from 'src/app/shared/Models/Products/productInputWithSpec';
 import { ProductService } from '../product.service';
 
+declare function jquerySlider(): void;
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -18,6 +20,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts(this.inp);
+    jquerySlider();
   }
 
   getProducts(inp: ProductInputWithSpec) {

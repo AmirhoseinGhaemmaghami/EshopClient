@@ -13,6 +13,7 @@ export class InitializeService {
     if (token)
       this.accountServie.getCurrentUser(token).subscribe({
         next: (v) => {},
+        error: () => localStorage.removeItem(Consts.token),
       });
   }
 }

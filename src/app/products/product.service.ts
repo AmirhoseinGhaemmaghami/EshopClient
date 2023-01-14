@@ -19,6 +19,16 @@ export class ProductService {
     if (inp.PageSize) params = params.set('PageSize', inp.PageSize);
     if (inp.StartPrice) params = params.set('StartPrice', inp.StartPrice);
     if (inp.Title) params = params.set('Title', inp.Title);
+    if (inp.categories) {
+      for (const i of inp.categories) {
+        params = params.append('CategoryIds', i);
+      }
+    }
+    if (inp.SortColumn)
+      if (inp.SortOrder) {
+        params = params.set('SortColumn', inp.SortColumn);
+        params = params.set('SortOrder', inp.SortOrder);
+      }
 
     return this.httpClient.get<Pagination<Product>>('/api/product', {
       params: params,

@@ -14,7 +14,4 @@ export interface Product {
   existed: boolean;
   price: number;
   specialProduct: boolean;
-  productGalleries: ProductGallery[];
-  productVisits: ProductVisit[];
-  productSelectedCategories: ProductSelectedCategory[];
 }

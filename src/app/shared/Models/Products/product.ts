@@ -1,4 +1,4 @@
-import { ProductGallery } from './prodcutGallery';
+import { ProductGallery } from './productGallery';
 import { ProductSelectedCategory } from './ProductSelectedCategory';
 import { ProductVisit } from './productVisit';
 

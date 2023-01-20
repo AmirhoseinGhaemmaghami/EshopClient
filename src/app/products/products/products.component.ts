@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSliderDragEvent } from '@angular/material/slider';
 import { CategoryService } from 'src/app/core/Services/category.service';
 import { Product } from 'src/app/shared/Models/Products/product';
 import { ProductCategory } from 'src/app/shared/Models/Products/productCategory';
@@ -91,5 +92,23 @@ export class ProductsComponent implements OnInit {
     }
 
     this.getProducts(this.inp);
+  }
+
+  priceStartSliderChange(ev: MatSliderDragEvent) {
+    this.inp.StartPrice = Number(ev.value);
+    this.getProducts(this.inp);
+  }
+
+  priceEndSliderChange(ev: MatSliderDragEvent) {
+    this.inp.EndPrice = Number(ev.value);
+    this.getProducts(this.inp);
+  }
+
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
   }
 }

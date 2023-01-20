@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/shared/Models/Products/product';
 
 @Component({
   selector: 'app-single-product',
@@ -6,7 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./single-product.component.scss'],
 })
 export class SingleProductComponent {
-  @Input() Title!: string;
-  @Input() Price!: number;
-  @Input() exists!: boolean;
+  @Input() product!: Product;
 }

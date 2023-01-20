@@ -86,18 +86,25 @@
               ></a>
             </div>
             <div id="filterPrices" class="accordion-body in collapse">
-              <div class="accordion-inner with-slider">
-                <div class="jqueryui-slider-container">
-                  <div id="pricesRange"></div>
-                </div>
+              <mat-slider
+                min="0"
+                max="5000"
+                step="20"
+                showTickMarks
+                discrete
+                [displayWith]="formatLabel"
+              >
                 <input
-                  type="text"
-                  data-initial="432"
-                  class="max-val pull-right"
-                  disabled
+                  (dragEnd)="priceStartSliderChange($event)"
+                  value="300"
+                  matSliderStartThumb
                 />
-                <input type="text" data-initial="99" class="min-val" disabled />
-              </div>
+                <input
+                  (dragEnd)="priceEndSliderChange($event)"
+                  value="400"
+                  matSliderEndThumb
+                />
+              </mat-slider>
             </div>
           </div>
           <!-- /prices slider -->
@@ -150,11 +157,7 @@
         <div *ngIf="productsToShow" class="row popup-products">
           <div id="isotopeContainer" class="isotope-container">
             <ng-container *ngFor="let product of this.productsToShow">
-              <app-single-product
-                [exists]="product.existed"
-                [Price]="product.price"
-                [Title]="product.name"
-              ></app-single-product>
+              <app-single-product [product]="product"></app-single-product>
             </ng-container>
           </div>
         </div>

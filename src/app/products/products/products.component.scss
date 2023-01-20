@@ -13,3 +13,12 @@ mat-paginator {
     display: none;
   }
 }
+
+#filterPrices {
+  padding-right: 2px;
+  padding-top: 30px;
+  mat-slider {
+    width: 180px;
+    direction: ltr;
+  }
+}

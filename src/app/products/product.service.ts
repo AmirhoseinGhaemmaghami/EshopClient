@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pagination } from '../shared/Models/Paging/pagination';
 import { Product } from '../shared/Models/Products/product';
 import { ProductInputWithSpec } from '../shared/Models/Products/productInputWithSpec';
+import { ProductWithDetailsResultDto } from '../shared/Models/Products/productWithDetailsResultDto';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,21 @@ export class ProductService {
     return this.httpClient.get<Pagination<Product>>('/api/product', {
       params: params,
     });
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.httpClient.get<Product>('/api/product' + id.toString());
+  }
+
+  getProductWithDetailById(
+    id: number
+  ): Observable<ProductWithDetailsResultDto> {
+    return this.httpClient.get<ProductWithDetailsResultDto>(
+      '/api/product/ProductWithAllDetails/' + id.toString()
+    );
+  }
+
+  getRelatedProducts(productId: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>('/api/product/Related/' + productId);
   }
 }

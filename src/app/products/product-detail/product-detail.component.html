@@ -142,7 +142,9 @@
             <a href="#tab-1" data-toggle="tab">جزئیات</a>
           </li>
           <li>
-            <a href="#tab-2" data-toggle="tab">نظرات</a>
+            <a href="#tab-2" data-toggle="tab" (click)="commentsClick()"
+              >نظرات</a
+            >
           </li>
         </ul>
         <div *ngIf="product" class="tab-content">
@@ -153,18 +155,106 @@
             </p>
           </div>
           <div class="fade tab-pane" id="tab-2">
-            <p>
-              لورم ایپسوم متنی است که ساختگی برای طراحی و چاپ آن مورد است. صنعت
-              چاپ زمانی لازم بود شرایطی شما باید فکر ثبت نام و طراحی، لازمه خروج
-              می باشد. در ضمن قاعده همفکری ها جوابگوی سئوالات زیاد شاید باشد،
-              آنچنان که لازم بود طراحی گرافیکی خوب بود. کتابهای زیادی شرایط سخت
-              ، دشوار و کمی در سالهای دور لازم است. هدف از این نسخه فرهنگ پس از
-              آن و دستاوردهای خوب شاید باشد. حروفچینی لازم در شرایط فعلی لازمه
-              تکنولوژی بود که گذشته، حال و آینده را شامل گردد. سی و پنج درصد از
-              طراحان در قرن پانزدهم میبایست پرینتر در ستون و سطر حروف لازم است،
-              بلکه شناخت این ابزار گاه اساسا بدون هدف بود و سئوالهای زیادی در
-              گذشته بوجود می آید، تنها لازمه آن بود.
-            </p>
+            <!--  ==========  -->
+            <!--  = Comments =  -->
+            <!--  ==========  -->
+
+            <section id="comments" class="comments-container">
+              <h3 class="push-down-25">
+                <span class="light">{{ ProductComments.length }}</span> نظر
+              </h3>
+
+              <!--  ==========  -->
+              <!--  = Single Comment =  -->
+              <!--  ==========  -->
+              <div
+                *ngFor="let item of ProductComments"
+                class="single-comment clearfix"
+              >
+                <div class="avatar-container">
+                  <img
+                    src="/assets/images/dummy/avatars/avatar-2.jpg"
+                    alt="avatar"
+                    class="avatar"
+                    width="184"
+                    height="184"
+                  />
+                </div>
+                <div class="comment-content">
+                  <div class="comment-inner">
+                    <cite class="author-name">
+                      <span class="light">{{
+                        item.userFirstName + " " + item.userLastName
+                      }}</span>
+                    </cite>
+                    <div class="metadata">
+                      {{ item.createDate }}
+                    </div>
+                    <div class="comment-text">
+                      <p>
+                        {{ item.comment }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <h3 class="push-down-25"><span class="light">نظر</span> بدهید</h3>
+
+              <p
+                *ngIf="!this.accountService.UserValue"
+                [routerLink]="['/account/login']"
+              >
+                برای نظر دادن ابتدا وارد
+                <a style="cursor: pointer">حساب کاربری </a>
+                خود شوید
+              </p>
+              <form
+                *ngIf="this.accountService.UserValue"
+                id="commentform"
+                [formGroup]="commentsForm"
+                (ngSubmit)="onCommentsSubmit()"
+                class="form form-inline form-comments"
+              >
+                <p class="push-down-20">
+                  <textarea
+                    class="input-block-level"
+                    tabindex="1"
+                    rows="7"
+                    cols="70"
+                    id="comment"
+                    name="comment"
+                    formControlName="comment"
+                    placeholder="نظرتان را در اینجا بنویسید ..."
+                  ></textarea>
+                  <ng-container
+                    *ngIf="
+                      this.commentsForm.controls['comment'] as commentControl
+                    "
+                  >
+                    <p
+                      class="text-error"
+                      *ngIf="commentControl.touched && commentControl.errors?.['required']"
+                    >
+                      elzami ast
+                    </p>
+                  </ng-container>
+                </p>
+                <p>
+                  <button
+                    [disabled]="!commentsForm.valid"
+                    type="submit"
+                    class="btn btn-primary bold"
+                    type="submit"
+                    tabindex="2"
+                    id="submit"
+                  >
+                    ارسال نظر
+                  </button>
+                </p>
+              </form>
+            </section>
           </div>
         </div>
       </div>

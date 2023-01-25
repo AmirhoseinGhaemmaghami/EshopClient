@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pagination } from '../shared/Models/Paging/pagination';
+import { ProductCommentInputDto } from '../shared/Models/ProductComment/productCommentInputDto';
+import { ProductCommentResultDto } from '../shared/Models/ProductComment/ProductCommentResultDto';
 import { Product } from '../shared/Models/Products/product';
 import { ProductInputWithSpec } from '../shared/Models/Products/productInputWithSpec';
 import { ProductWithDetailsResultDto } from '../shared/Models/Products/productWithDetailsResultDto';
@@ -50,5 +52,15 @@ export class ProductService {
 
   getRelatedProducts(productId: number): Observable<Product[]> {
     return this.httpClient.get<Product[]>('/api/product/Related/' + productId);
+  }
+
+  getProductComments(productId: number): Observable<ProductCommentResultDto[]> {
+    return this.httpClient.get<ProductCommentResultDto[]>(
+      '/api/product/Comments/' + productId
+    );
+  }
+
+  AddProductComment(inp: ProductCommentInputDto): Observable<boolean> {
+    return this.httpClient.post<boolean>('/api/product/comments', inp);
   }
 }

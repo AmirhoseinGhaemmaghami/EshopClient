@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     MatSelectModule,
     MatSliderModule,
     MatInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProductsModule {}

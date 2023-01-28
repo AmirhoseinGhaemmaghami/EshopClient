@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(
     private initializeService: InitializeService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeService.loadUser();

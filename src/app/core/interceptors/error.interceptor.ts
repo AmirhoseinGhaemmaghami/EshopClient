@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService) { }
 
   intercept(
     request: HttpRequest<unknown>,
@@ -21,7 +21,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         switch (error.status) {
           case 400:
           case 404:
-            if (error?.error?.message) this.toastr.error(error.error.message);
+            if (error?.error?.critical)
+              if (error?.error?.message) this.toastr.error(error.error.message);
             break;
 
           case 401:

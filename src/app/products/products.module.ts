@@ -9,7 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSliderModule,
     MatInputModule,
     ReactiveFormsModule,
+    FormsModule,
+    SweetAlert2Module,
   ],
 })
 export class ProductsModule {}

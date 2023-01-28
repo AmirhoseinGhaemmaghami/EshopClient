@@ -21,7 +21,9 @@
             [routerLink]="['/products/detail/' + product.id]"
             >توضیحات بیشتر</a
           >
-          <a class="btn buy btn-danger" href="#">اضافه به سبد خرید</a>
+          <a class="btn buy btn-danger" (click)="addProductToBasket()"
+            >اضافه به سبد خرید</a
+          >
         </div>
       </div>
     </div>
@@ -39,3 +41,5 @@
   </div>
 </div>
 <!-- /single product -->
+
+<swal #mySwal text="" title="" [toast]="true" icon="info"></swal>

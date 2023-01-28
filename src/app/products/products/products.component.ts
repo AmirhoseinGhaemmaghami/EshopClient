@@ -66,10 +66,8 @@ export class ProductsComponent implements OnInit {
     if (event.target.checked) {
       if ((i as number) < 0)
         this.inp.categories?.push(Number(event.target.value));
-      console.log(this.inp.categories);
     } else {
       if ((i as number) >= 0) this.inp.categories?.splice(i as number, 1);
-      console.log(this.inp.categories);
     }
 
     this.inp.PageId = 1;

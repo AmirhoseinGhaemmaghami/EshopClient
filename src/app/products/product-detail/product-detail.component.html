@@ -218,16 +218,18 @@
 
               <h3 class="push-down-25"><span class="light">نظر</span> بدهید</h3>
 
-              <p
-                *ngIf="!this.accountService.UserValue"
+              <ng-container *ngIf="this.accountService.User$| async as u">
+                <p
+                *ngIf="!u"
                 [routerLink]="['/account/login']"
               >
                 برای نظر دادن ابتدا وارد
                 <a style="cursor: pointer">حساب کاربری </a>
                 خود شوید
               </p>
+              </ng-container>
               <form
-                *ngIf="this.accountService.UserValue"
+                *ngIf="this.accountService.User$| async"
                 id="commentform"
                 [formGroup]="commentsForm"
                 (ngSubmit)="onCommentsSubmit()"

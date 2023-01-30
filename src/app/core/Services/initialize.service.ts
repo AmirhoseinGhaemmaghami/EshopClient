@@ -11,7 +11,7 @@ export class InitializeService {
 
   loadUser(): void {
     let token = localStorage.getItem(Consts.token);
-    if (token)
+    if (token) {
       this.accountServie.getCurrentUser(token).subscribe({
         next: (v) => {
           this.orderService.getOrder()
@@ -19,5 +19,9 @@ export class InitializeService {
         },
         error: () => localStorage.removeItem(Consts.token),
       });
+    }
+    else {
+      this.accountServie.currentUserSubject.next(null);
+    }
   }
 }
